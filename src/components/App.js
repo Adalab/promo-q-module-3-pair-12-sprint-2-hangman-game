@@ -5,12 +5,12 @@ import getWordFromApi from '../services/api';
 // styles
 import '../styles/App.scss';
 import '../styles/Dummy.scss';
-import '../styles/Letters.scss';
-import '../styles/Form.scss';
 import '../styles/Header.scss';
 import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
+import ErrorLetters from './ErrorLetters';
+import Form from './Form';
 
 function App() {
   const [word, setWord] = useState('');
@@ -90,29 +90,10 @@ function App() {
       <main className='main'>
         <section>
           <SolutionLetters   userLetters = {renderSolutionLetters()} />
-          <div className='error'>
-            <h2 className='title'>Letras falladas:</h2>
-            <ul className='letters'>{renderErrorLetters()}</ul>
-          </div>
-          <form className='form' onSubmit={handleSubmit}> 
-            <label className='title' htmlFor='last-letter'>
-              Escribe una letra:
-            </label>
-            <input
-              autoFocus
-              autoComplete='off'
-              className='form__input'
-              maxLength='1'
-              type='text'
-              name='last-letter'
-              id='last-letter'
-              value={lastLetter}
-              onKeyDown={handleKeyDown}
-              onChange={handleChange}
-            />
-          </form>
+          <ErrorLetters userErrorLetters = {renderErrorLetters()}/>
+          <Form handleSubmit = {handleSubmit} handleKeyDown={handleKeyDown} handleChange = {handleChange} lastLetter={lastLetter} />
         </section>
-        < Dummy  numberOfErrors= {getNumberOfErrors()} />
+        < Dummy  numberOfErrors= {getNumberOfErrors()}/>
       </main>
     </div>
   );
