@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+ import {Route} from 'react-router-dom'; 
 
 // api
 import getWordFromApi from '../services/api';
@@ -6,11 +7,14 @@ import getWordFromApi from '../services/api';
 import '../styles/App.scss';
 import '../styles/Dummy.scss';
 import '../styles/Header.scss';
+
 import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
 import Form from './Form';
+import Footer from './Footer';
+import Instructions from './Instructions';
 
 function App() {
   const [word, setWord] = useState('');
@@ -95,6 +99,8 @@ function App() {
         </section>
         < Dummy  numberOfErrors= {getNumberOfErrors()}/>
       </main>
+
+      <Footer/>
     </div>
   );
 }
