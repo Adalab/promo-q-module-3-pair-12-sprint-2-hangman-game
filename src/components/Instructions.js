@@ -1,5 +1,5 @@
 const Instructions = (props)=>{
-    return (<section class="instructions">
+    return (<section className="instructions">
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
       provident nisi voluptatem est nostrum optio perferendis doloremque,
