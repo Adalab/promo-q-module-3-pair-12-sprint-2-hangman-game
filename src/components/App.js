@@ -16,12 +16,15 @@ import Form from './Form';
 import Footer from './Footer';
 import Instructions from './Instructions';
 import Options from './Options';
+import Loading from './Loading';
 
 
 function App() {
   const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);
   const [lastLetter, setLastLetter] = useState('');
+  const [ loading, setLoading]= useState ( false);
+  const [ isLoading, setIsLoading]=  useState ( true ) 
 
   useEffect(() => {
     getWordFromApi().then((word) => {
@@ -35,6 +38,13 @@ function App() {
     // Sabrías decir para qué es esta línea
     ev.target.setSelectionRange(0, 1);
   };
+
+  const handleWord = value => {
+    setWord(value);
+    setUserLetters([]);
+    setLastLetter('');
+  };
+
 
   const handleChange = (ev) => {
     let re = /[a-zA-Z]/; //add regular pattern - lesson 3.3 exercise 2
@@ -105,7 +115,7 @@ function App() {
         } />
 
           <Route path="/instructions" element={<Instructions />} />
-          <Route path="/options" element={<Options />} />
+          <Route path="/options" element={<Options  handleWord= { handleWord}  word ={ word} />} />
       </Routes>
       </section>
             < Dummy  numberOfErrors= {getNumberOfErrors()}/>
